@@ -16,3 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/categorias', function () {
+    return view('admin.crud_categories');
+});
+
+Route::get('/noticias', function () {
+    return view('admin.crud_news');
+});
