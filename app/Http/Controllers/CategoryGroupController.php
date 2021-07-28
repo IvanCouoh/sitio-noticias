@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\category_group;
+use App\Models\CategoryGroup;
 use Illuminate\Http\Request;
 
 class CategoryGroupController extends Controller
@@ -41,10 +41,10 @@ class CategoryGroupController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\category_group  $category_group
+     * @param  \App\Models\CategoryGroup  $categoryGroup
      * @return \Illuminate\Http\Response
      */
-    public function show(category_group $category_group)
+    public function show(CategoryGroup $categoryGroup)
     {
         //
     }
@@ -52,10 +52,10 @@ class CategoryGroupController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\category_group  $category_group
+     * @param  \App\Models\CategoryGroup  $categoryGroup
      * @return \Illuminate\Http\Response
      */
-    public function edit(category_group $category_group)
+    public function edit(CategoryGroup $categoryGroup)
     {
         //
     }
@@ -64,10 +64,10 @@ class CategoryGroupController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\category_group  $category_group
+     * @param  \App\Models\CategoryGroup  $categoryGroup
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, category_group $category_group)
+    public function update(Request $request, CategoryGroup $categoryGroup)
     {
         //
     }
@@ -75,10 +75,10 @@ class CategoryGroupController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\category_group  $category_group
+     * @param  \App\Models\CategoryGroup  $categoryGroup
      * @return \Illuminate\Http\Response
      */
-    public function destroy(category_group $category_group)
+    public function destroy(CategoryGroup $categoryGroup)
     {
         //
     }

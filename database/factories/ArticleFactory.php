@@ -2,17 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\Categories;
+use App\Models\Article;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class CategoriesFactory extends Factory
+class ArticleFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = Categories::class;
+    protected $model = Article::class;
 
     /**
      * Define the model's default state.
@@ -23,7 +23,10 @@ class CategoriesFactory extends Factory
     {
         return [
             'name'=>$this->faker->sentence(),
-            'category_group_id'=>$this->faker->unique()->randomElement($array = ['1','2','3','4','5']),
+            'description'=>$this->faker->text(50),
+            'author'=>$this->faker->name(),
+            'category_id'=>$this->faker->randomElement($array = ['1','2','3','4','5']),
+            'published_at'=>$this->faker->dateTime($max ='now', $timezone = null),
         ];
     }
 }

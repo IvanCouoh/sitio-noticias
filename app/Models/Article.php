@@ -4,16 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Comentaries;
-class News extends Model
+use App\Models\Comment;
+
+class Article extends Model
 {
     use HasFactory;
 
-    public function comentaries(){
-        return $this->hasMany(Comentaries::class);
+    public function comments(){
+        return $this->hasMany(Comment::class);
     }
 
     public function category (){
-        return $this->belongsTo(Categories::class);
+        return $this->belongsTo(Category::class);
     }
 }
