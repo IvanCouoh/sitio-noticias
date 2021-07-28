@@ -1,0 +1,126 @@
+:root {
+    --color_blue: #1f2c36;
+    --color_white: #fff;
+    --color_background_body: #f0f2f5;
+    --color_letter: #212529;
+    --font_family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --height_header: 50px;
+    --width_aside: 250px;
+    --width_img: 50px;
+    --height_img: 50px;
+    --padding_content: 15px;
+    --z_top: 100;
+    --z_medium: 10;
+    --z_down: 1;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font_family);
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--color_letter);
+    background-color: var(--color_white);
+}
+
+a {
+    text-decoration: none;
+    color: var(--color_white);
+}
+
+h1, h2, h3, p {
+    margin: 0;
+}
+
+.container {
+    display: grid;
+    grid-template-rows: var(--height_header) auto;
+    grid-template-columns: var(--width_aside) auto;
+    grid-template-areas: "aside header" "aside main";
+}
+
+.header {
+    background-color: var(--color_white);
+    grid-area: header;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    z-index: var(--z_top);
+}
+
+.aside {
+    background-color: var(--color_blue);
+    grid-area: aside;
+    height: 100vh;
+    padding: var(--padding_content);
+    color: var(--color_white);
+    text-align: center;
+    z-index: var(--z_top);
+}
+
+.content__info {
+    display: grid;
+    gap: 1rem;
+    align-items: center;
+    grid-template-columns: repeat(2, max-content);
+}
+
+.content__profile {
+    width: var(--width_img);
+    height: var(--height_img);
+    border-radius: 50%;
+}
+
+.content__name {
+    word-wrap: break-word;
+    width: 114px;
+}
+
+.aside__links {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, fr);
+    text-align: left;
+    margin-top: 1.5rem;
+}
+
+.link {
+    display: grid;
+    grid-template-columns: repeat(2, max-content);
+    grid-template-rows: 1fr;
+    gap: 1rem;
+    padding: var(--padding_content);
+    margin: 0 -15px;
+}
+
+.link:hover {
+    background-color: #5a626e;
+}
+
+.link__active {
+    background-color: #5a626e;
+}
+
+.main {
+    grid-area: main;
+    background-color: var(--color_background_body);
+    height: 100%;
+    padding: var(--padding_content);
+    z-index: 1;
+}
+
+@media screen and (max-width: 1060px) {
+    :root {
+        --width_aside: 55px;
+        --width_img: 25px;
+        --height_img: 25px;
+    }
+    .link {
+        grid-template-columns: 1fr;
+    }
+    .link__name {
+        display: none;
+    }
+}
