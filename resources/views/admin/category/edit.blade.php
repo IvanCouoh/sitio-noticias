@@ -7,7 +7,7 @@
     <form action="{{ route('categorias.update', $category->id) }}" method="post" class="form">
         @csrf
         {{ method_field('PATCH') }}
-        @include('admin.category.form')
+        @include('admin.category.form', ['method' => 'edit'])
     </form>
 </div>
 @endsection
