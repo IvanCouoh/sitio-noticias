@@ -15,13 +15,14 @@
     <div class="main__list">
         <div class="main_head">
             <h3 class="main__subtitle">Grupo de categorías</h3>
-            <a href="{{ url('/grupo_categoria/create') }}" class="button success">Nuevo</a>
+            {{-- Aqui esta el link crudo igual.... cambialo por nombre de la ruta --}}
+            <a href="{{ route('grupo_categoria.create') }}" class="button success">Nuevo</a>
         </div>
         @foreach ($categoryGroups as $categoryGroup)
             <div class="main__item__container">
                 <p>{{ $categoryGroup->name }}</p>
                 <div class="actions">
-                    <form action="{{ url('/grupo_categoria/' . $categoryGroup->id) }}" method="post">
+                    <form action="{{ route('grupo_categoria.destroy', $categoryGroup->id) }}" method="post">
                         @csrf
                         {{ method_field('DELETE') }}
                         <button type="submit" class="main__a-link fail"
@@ -29,8 +30,7 @@
                             <box-icon type='solid' name='trash' title="Eliminar" color="white" size="25px"></box-icon>
                         </button>
                     </form>
-                    <a href="{{ url('/grupo_categoria/' . $categoryGroup->id . '/edit') }}"
-                        class="main__a-link warning">
+                    <a href="{{ route('grupo_categoria.edit', $categoryGroup->id) }}" class="main__a-link warning">
                         <box-icon type='solid' name='edit-alt' title="Editar" color="white" size="25px"></box-icon>
                     </a>
                 </div>
@@ -42,14 +42,15 @@
     <div class="main__list">
         <div class="main_head">
             <h3 class="main__subtitle">Categorías</h3>
-            <a href="/categorias/create" class="button success">Nuevo</a>
+            {{-- En este no se que esté saliendo mal --}}
+            <a href="{{ route('categorias.create') }}" class="button success">Nuevo</a>
         </div>
         @foreach ($categories as $category)
             <div class="main__item__container">
                 <p> {{ $category->name }} <span
                         class="badge bg-primary">{{ $category->category_group->name }}</span> </p>
                 <div class="actions">
-                    <form action="{{ url('/categorias/' . $category->id) }}" method="post">
+                    <form action="{{ route('categorias.destroy', $category->id) }}" method="post">
                         @csrf
                         {{ method_field('DELETE') }}
                         <button class="main__a-link fail"
@@ -57,7 +58,7 @@
                             <box-icon type='solid' name='trash' title="Eliminar" color="white" size="25px"></box-icon>
                         </button>
                     </form>
-                    <a href="{{ url('/categorias/' . $category->id . '/edit') }}" class="main__a-link warning">
+                    <a href="{{ route('categorias.edit', $category->id) }}" class="main__a-link warning">
                         <box-icon type='solid' name='edit-alt' title="Editar" color="white" size="25px"></box-icon>
                     </a>
                 </div>

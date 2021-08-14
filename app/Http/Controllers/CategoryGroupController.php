@@ -50,7 +50,7 @@ class CategoryGroupController extends Controller
 
         $categyData = request()->except('_token');
         CategoryGroup::create($categyData);
-        return redirect('/categorias')->with('message', 'Se ha creado con éxito el grupo de categoría.');
+        return redirect()->route('categorias.index')->with('message', 'Se ha creado con éxito el grupo de categoría.');
     }
 
     /**
@@ -97,8 +97,8 @@ class CategoryGroupController extends Controller
 
         $categyData = request()->except('_token','_method');
         CategoryGroup::where('id','=',$id)->update($categyData);
-        CategoryGroup::findOrFail($id);
-        return redirect('/categorias')->with('message','Se ha editado con éxito el grupo de categoría.');
+
+        return redirect()->route('categorias.index')->with('message','Se ha editado con éxito el grupo de categoría.');
     }
 
     /**
@@ -110,6 +110,6 @@ class CategoryGroupController extends Controller
     public function destroy($id)
     {
         CategoryGroup::destroy($id);
-        return redirect('/categorias')->with('message','Se ha eliminado con éxito este grupo de categoría.');
+        return redirect()->route('categorias.index')->with('message','Se ha eliminado con éxito este grupo de categoría.');
     }
 }

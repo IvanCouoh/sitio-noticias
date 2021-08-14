@@ -54,7 +54,7 @@ class CategoryController extends Controller
         $categoryData = request()->except('_token');
 
         Category::create($categoryData);
-        return redirect('/categorias')->with('message', 'Se ha creado con éxito la categoría');
+        return redirect()->route('categorias.index')->with('message', 'Se ha creado con éxito la categoría');
     }
 
     /**
@@ -102,7 +102,7 @@ class CategoryController extends Controller
         $categoryData = request()->except('_token','_method');
         Category::where('id','=',$id)->update($categoryData);
         Category::findOrFail($id);
-        return redirect('/categorias')->with('message','Se ha editado con éxito la categoría.');
+        return redirect()->route('categorias.index')->with('message','Se ha editado con éxito la categoría.');
     }
 
     /**
@@ -114,6 +114,6 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         Category::destroy($id);
-        return redirect('/categorias')->with('message','Se ha eliminado con éxito la categoría.');
+        return redirect()->route('categorias.index')->with('message','Se ha eliminado con éxito la categoría.');
     }
 }

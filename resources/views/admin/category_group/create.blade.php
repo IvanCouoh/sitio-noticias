@@ -9,7 +9,7 @@
     {{-- CATEGORY GROUP --}}
     <div class="main__form">
         <h3 class="main__subtitle">Crear una categoría padre</h3>
-        <form action="{{ url('/grupo_categoria') }}" method="Post" class="form">
+        <form action="{{ route('grupo_categoria.store') }}" method="Post" class="form">
             @csrf
             @include('admin.category_group.form',['text'=>'Añadir'])
         </form>

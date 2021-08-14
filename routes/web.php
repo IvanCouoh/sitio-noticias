@@ -20,6 +20,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('categorias', CategoryController::class);
+Route::prefix('admin')->group(function () {
+    Route::resource('categorias', CategoryController::class);
 
-Route::resource('grupo_categoria', CategoryGroupController::class);
+    Route::resource('grupo_categoria', CategoryGroupController::class);
+});
+
