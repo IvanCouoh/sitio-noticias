@@ -5,12 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/admin/styles.css') }}">
-    <title>Document</title>
+    <title>@yield('title')</title>
 </head>
 
 <body>
-    <div class="container">
+    <div class="container__custom">
         <header class="header"></header>
         <aside class="aside">
             <div class="content__info">
@@ -19,12 +20,12 @@
                 <div class="content__name">Javier Herrera</div>
             </div>
             <div class="aside__links">
-                <a href="/sitio-noticias/public/categorias" class="link" title="Alta de categorías">
+                <a href="/categorias" class="link" title="Alta de categorías">
                     <box-icon type='solid' name='category' color="white"></box-icon>
                     <p class="link__name">Alta de categorías</p>
                 </a>
 
-                <a href="/sitio-noticias/public/noticias" class="link" title="Alta de noticias">
+                <a href="#" class="link" title="Alta de noticias">
                     <box-icon type='solid' name='news' color="white"></box-icon>
                     <p class="link__name">Alta de noticias</p>
                 </a>

@@ -9,6 +9,8 @@ class Category extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name','category_group_id'];
+
     public function articles(){
         return $this->hasMany(Article::class);
     }

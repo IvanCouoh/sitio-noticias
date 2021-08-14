@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\CategoryGroup;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -14,7 +15,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $dataCat['categories'] = Category::all();
+        $dataCatGroup['categoryGroups'] = CategoryGroup::all();
+        return view('admin.category.index', $dataCat, $dataCatGroup);
     }
 
     /**
@@ -24,7 +27,8 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        $dataCatGroup['categoryGroups'] = CategoryGroup::all();
+        return view('admin.category.create', $dataCatGroup);
     }
 
     /**
@@ -35,7 +39,22 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $fields = [
+            'name' => 'required|string|max:100',
+            // 'category_group_id' => 'required|in:Asigne una categoría',
+        ];
+
+        $messages=[
+            'name.required' => 'El nombre es requerido.',
+            // 'category_group_id.required' => 'Se requiere una categoría.',
+        ];
+
+        $this->validate($request, $fields, $messages);
+
+        $categoryData = request()->except('_token');
+
+        Category::create($categoryData);
+        return redirect('/categorias')->with('message', 'Se ha creado con éxito la categoría');
     }
 
     /**
@@ -55,9 +74,11 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($id)
     {
-        //
+        $category = Category::findOrFail($id);
+        $dataCatGroup['categoryGroups'] = CategoryGroup::all();
+        return view('admin.category.edit', compact('category'), $dataCatGroup);
     }
 
     /**
@@ -67,9 +88,21 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        //
+        $field = [
+            'name' => 'required|string|max:100',
+        ];
+
+        $message=[
+            'name.required' => 'El nombre es requerido.',
+        ];
+
+        $this->validate($request, $field, $message);
+        $categoryData = request()->except('_token','_method');
+        Category::where('id','=',$id)->update($categoryData);
+        Category::findOrFail($id);
+        return redirect('/categorias')->with('message','Se ha editado con éxito la categoría.');
     }
 
     /**
@@ -78,8 +111,9 @@ class CategoryController extends Controller
      * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        //
+        Category::destroy($id);
+        return redirect('/categorias')->with('message','Se ha eliminado con éxito la categoría.');
     }
 }

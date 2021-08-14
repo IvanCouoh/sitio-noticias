@@ -22,7 +22,7 @@ class CategoryGroupFactory extends Factory
     public function definition()
     {
         return [
-            'name'=>$this->faker->unique()->randomElement($array = ['Blog','Deportes','Entretenimiento','Espectaculos','Tecnología']),
+            'name'=>$this->faker->unique()->randomElement($array = ['Animales','Deportes','Transportes','Viajes','Tecnología']),
         ];
     }
 }

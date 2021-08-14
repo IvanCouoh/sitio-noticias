@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryGroupController;
+use App\Models\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +20,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/categorias', function () {
-    return view('admin.crud_categories');
-});
+Route::resource('categorias', CategoryController::class);
 
-Route::get('/noticias', function () {
-    return view('admin.crud_news');
-});
+Route::resource('grupo_categoria', CategoryGroupController::class);
