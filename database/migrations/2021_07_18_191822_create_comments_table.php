@@ -18,6 +18,7 @@ class CreateCommentsTable extends Migration
             $table->string('author');
             $table->string('email');
             $table->string('message');
+            $table->boolean('is_banned')->default(false);
             $table->unsignedBigInteger('article_id');
             $table->foreign('article_id')->references('id')->on('articles');
             $table->timestamps();

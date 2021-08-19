@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\API\ArticleController;
+use App\Http\Controllers\API\CommentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::apiResource('/comentarios', CommentController::class);
+Route::get('comentarios/{article_id}/noticia', [CommentController::class, 'getArticleComments']);
+Route::get('comentarios/{comment_id}/ban', [CommentController::class, 'banComment']);

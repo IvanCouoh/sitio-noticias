@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="UTF-8">
@@ -7,7 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="{{ asset('css/admin/styles.css') }}">
+    {{-- Aqui al final de todos tus estilos puedes insertar un yield para estilos que sobreescriban cualquier cosa que vaya arriba o solo para insertar nuevos estilos --}}
     <title>@yield('title')</title>
 </head>
 
@@ -26,12 +28,12 @@
                     <p class="link__name">Alta de categorías</p>
                 </a>
 
-                <a href="#" class="link" title="Alta de noticias">
+                <a href="{{ route('noticias.create') }}" class="link" title="Alta de noticias">
                     <box-icon type='solid' name='news' color="white"></box-icon>
                     <p class="link__name">Alta de noticias</p>
                 </a>
 
-                <a href="#" class="link" title="Mis publicaciones">
+                <a href="{{ route('noticias.index') }}" class="link" title="Mis publicaciones">
                     <box-icon type='solid' name='archive-out' color="white"></box-icon>
                     <p class="link__name">Mis publicaciones</p>
                 </a>
@@ -43,6 +45,7 @@
     </div>
     <script src="https://unpkg.com/boxicons@2.0.8/dist/boxicons.js"></script>
     <script src="{{ asset('js/main.js') }}"></script>
+    @yield('javascript');
 </body>
 
 </html>

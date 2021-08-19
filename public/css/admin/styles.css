@@ -166,6 +166,10 @@ h1, h2, h3, p {
     padding: 3px 10px;
 }
 
+.textarea {
+    height: 100px !important;
+}
+
 label {
     margin-bottom: 8px;
 }
@@ -229,6 +233,94 @@ label {
     cursor: pointer;
     color: var(--color_white) !important;
     height: max-content;
+}
+
+.card__article__target {
+    background-color: var(--color_white);
+    margin-top: 8px;
+    border-radius: 10px;
+    padding: 15px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.card__article__info {
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+.card__article__title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin-bottom: 7px;
+}
+
+.card__article__description {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    overflow: hidden;
+}
+
+.article__btn-view {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card__article__time {
+    display: flex;
+    align-items: center;
+    padding-top: 6px;
+}
+
+.card__article__time i {
+    padding-right: 5px;
+}
+
+.article__image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    margin: 15px 0;
+}
+
+.article__title__admin {
+    text-align: center;
+}
+
+.article__info__admin {
+    font-size: .85rem;
+    display: flex;
+    align-items: center;
+}
+
+.article__info-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.paginator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.page-item.active .page-link {
+    background-color: var(--color_blue);
+    border: var(--color_blue);
+}
+
+.comments__list {
+    justify-content: space-between;
+}
+
+#list-comments {
+    height: 500px;
+    overflow-x: auto;
 }
 
 @media screen and (max-width: 1060px) {

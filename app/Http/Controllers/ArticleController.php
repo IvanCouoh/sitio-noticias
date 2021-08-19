@@ -3,10 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
+use App\Models\Category;
+use App\Models\CategoryGroup;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\DB;
 
 class ArticleController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +20,8 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        //
+        $articleData['articles'] = Article::paginate(5);
+        return view('admin.articles.index', $articleData);
     }
 
     /**
@@ -24,7 +31,10 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        $categoryData['categories'] = Category::all();
+        // $categoryGroup = DB::table('category_groups')->where('name');
+        // $category = DB::table('Category')->where('category_id', $categoryGroup->id)->get();
+        return view('admin.articles.create', $categoryData);
     }
 
     /**
@@ -35,7 +45,9 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $articleData = request()->except('_token');
+        Article::create($articleData);
+        return redirect()->route('noticias.index')->with('message','La noticia se ha creado correctamente.');
     }
 
     /**
@@ -44,9 +56,10 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function show(Article $article)
+    public function show($id)
     {
-        //
+        $article = Article::findOrFail($id);
+        return view('admin.articles.show', compact('article'));
     }
 
     /**
@@ -55,9 +68,11 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function edit(Article $article)
+    public function edit($id)
     {
-        //
+        $article = Article::findOrFail($id);
+        $categories = Category::all();
+        return view('admin.articles.edit', compact('article', 'categories'));
     }
 
     /**
@@ -67,9 +82,11 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Article $article)
+    public function update($id)
     {
-        //
+        $articleData = request()->except('_token','_method');
+        Article::where('id','=',$id)->update($articleData);
+        return redirect()->route('noticias.index')->with('message','Se ha editado con éxito la noticia.');
     }
 
     /**
@@ -78,8 +95,9 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Article $article)
+    public function destroy($id)
     {
-        //
+        Article::destroy($id);
+        return redirect()->route('noticias.index')->with('message','Se ha eliminado con éxito la noticia,');
     }
 }

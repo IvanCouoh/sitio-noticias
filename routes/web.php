@@ -1,9 +1,10 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryGroupController;
-use App\Models\Category;
+use App\Http\Controllers\CKEditorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,5 +25,8 @@ Route::prefix('admin')->group(function () {
     Route::resource('categorias', CategoryController::class);
 
     Route::resource('grupo_categoria', CategoryGroupController::class);
-});
 
+    Route::resource('noticias', ArticleController::class);
+
+    Route::post('ckeditor/upload', [CKEditorController::class, 'upload'])->name('ckeditor.image-upload');
+});
