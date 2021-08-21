@@ -30,3 +30,7 @@ Route::prefix('admin')->group(function () {
 
     Route::post('ckeditor/upload', [CKEditorController::class, 'upload'])->name('ckeditor.image-upload');
 });
+
+Route::get('/inicio', function () {
+    return view('site.index');
+});
