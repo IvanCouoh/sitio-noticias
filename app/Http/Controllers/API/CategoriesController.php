@@ -72,9 +72,4 @@ class CategoriesController extends Controller
         $article_categories = $group->categories;
         return $article_categories;
     }
-
-    public function categoryId($id){
-        $categories = Category::where('id','=',$id)->get();
-        return $categories;
-    }
 }

@@ -84,6 +84,12 @@ h1, h2, h3, p {
     color: var(--color_primary);
     align-items: center;
     width: max-content;
+    cursor: pointer;
+}
+
+.active {
+    color: var(--color_white);
+    background-color: var(--color_primary);
 }
 
 .item__home {

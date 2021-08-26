@@ -66,15 +66,18 @@ class ArticlesController extends Controller
 
     public function getArticle()
     {
-        $article = Article::orderByRaw('created_at DESC')->take(4)->get();
+        $article = Article::with(['category'])->orderByRaw('created_at DESC')->take(4)->get();
         return $article;
     }
 
-    /*
-    *   @author Ricardo Canul
-    */
     public function getArticlesByCategoryId($id){
-        $articles = Category::with(['articles'])->where('id', $id)->first()->articles;
+        $articles = Category::with(['articles', 'articles.category'])->where('id', $id)->first()->articles;
+
+        return $articles;
+    }
+
+    public function getArticleCategory(){
+        $articles = Article::with(['category'])->get();
         return $articles;
     }
 }

@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\API\ArticleController;
 use App\Http\Controllers\API\ArticlesController;
 use App\Http\Controllers\API\CategoriesController;
 use App\Http\Controllers\API\CommentController;
@@ -28,7 +27,5 @@ Route::get('comentarios/{comment_id}/ban', [CommentController::class, 'banCommen
 Route::get('noticias/recientes', [ArticlesController::class, 'getArticle']);
 Route::get('categoria', [CategoriesController::class, 'categoryName']);
 Route::get('seccion/{id}', [CategoriesController::class, 'show']);
-
-/* Ricardo Canul */
 Route::get('noticias/by-category-id/{id}', [ArticlesController::class, 'getArticlesByCategoryId']);
-
+Route::get('prueba',[ArticlesController::class, 'getArticleCategory']);

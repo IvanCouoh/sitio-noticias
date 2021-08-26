@@ -8,7 +8,6 @@
     @endif
 
     <h3 class="main__subtitle">Mis noticias publicadas</h3>
-    {{-- <a href="{{ route('categorias.create') }}" class="button success">Nuevo</a> --}}
 
     @foreach ($articles as $article)
         <div class="card__article__target">
