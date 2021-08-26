@@ -5,9 +5,10 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\CategoryGroup;
 use Illuminate\Http\Request;
 
-class ArticlesController extends Controller
+class CategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +17,8 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        //
+        // $category = Article::where('category_id','=',2)->get();
+        // return $category;
     }
 
     /**
@@ -38,7 +40,8 @@ class ArticlesController extends Controller
      */
     public function show($id)
     {
-        //
+        $category = Article::where('category_id','=',2)->get();
+        return view('site.show' ,$category);
     }
 
     /**
@@ -64,17 +67,14 @@ class ArticlesController extends Controller
         //
     }
 
-    public function getArticle()
-    {
-        $article = Article::orderByRaw('created_at DESC')->take(4)->get();
-        return $article;
+    public function categoryName(){
+        $group = CategoryGroup::with(['categories'])->where('name', 'Noticias')->first();
+        $article_categories = $group->categories;
+        return $article_categories;
     }
 
-    /*
-    *   @author Ricardo Canul
-    */
-    public function getArticlesByCategoryId($id){
-        $articles = Category::with(['articles'])->where('id', $id)->first()->articles;
-        return $articles;
+    public function categoryId($id){
+        $categories = Category::where('id','=',$id)->get();
+        return $categories;
     }
 }

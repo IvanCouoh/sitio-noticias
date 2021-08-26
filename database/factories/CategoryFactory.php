@@ -23,7 +23,7 @@ class CategoryFactory extends Factory
     {
         return [
             'name'=>$this->faker->randomElement($array = ['Perros','Gatos','Europa','Latinoamerica','Autos','Barcos','Futbol','Beisbol','Robots']),
-            'category_group_id'=>$this->faker->unique()->randomElement($array = ['1','2','3','4','5']),
+            'category_group_id'=>$this->faker->unique()->randomElement($array = ['1','2']),
         ];
     }
 }

@@ -2,8 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\CategoryGroup;
 use Illuminate\Support\ServiceProvider;
 use illuminate\Pagination\Paginator;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**

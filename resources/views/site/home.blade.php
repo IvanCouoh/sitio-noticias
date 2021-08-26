@@ -1,14 +1,9 @@
 @extends('layout.layoutSite')
 
 @section('content')
-    <h1 class="title-recent">Noticias recientes</h1>
-    <hr>
+    <h1 class="title-recent" id="title-recent">Noticias recientes</h1>
+    <hr id="divider">
     <div id="recent-articles">
-    </div>
-
-    <h1 class="title-recent">Noticias populares</h1>
-    <hr>
-    <div id="popular-articles">
     </div>
 @endsection
 
@@ -20,7 +15,7 @@
             url: 'api/noticias/recientes'
         }).then((response) => {
             const element = document.getElementById('recent-articles');
-            const element2 = document.getElementById('popular-articles');
+            const title = document.getElementById('content-home');
 
             let recentArticle = '';
 
@@ -28,7 +23,6 @@
 
             for (let index = 0; index < long; index++) {
                 const data = response.data[index];
-                console.log(data);
                 recentArticle += `
                     <div class="article__card">
                         <img src="https://s.france24.com/media/display/688585be-9060-11ea-8c8d-005056a98db9/w:1400/p:16x9/journal-1920x1080_es.webp"
@@ -44,7 +38,6 @@
                     </div>
                 `
                 element.innerHTML = recentArticle;
-                element2.innerHTML = recentArticle;
 
             }
         });

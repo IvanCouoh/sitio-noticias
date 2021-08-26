@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\ArticleController;
 use App\Http\Controllers\API\ArticlesController;
+use App\Http\Controllers\API\CategoriesController;
 use App\Http\Controllers\API\CommentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -25,3 +26,9 @@ Route::apiResource('/comentarios', CommentController::class);
 Route::get('comentarios/{article_id}/noticia', [CommentController::class, 'getArticleComments']);
 Route::get('comentarios/{comment_id}/ban', [CommentController::class, 'banComment']);
 Route::get('noticias/recientes', [ArticlesController::class, 'getArticle']);
+Route::get('categoria', [CategoriesController::class, 'categoryName']);
+Route::get('seccion/{id}', [CategoriesController::class, 'show']);
+
+/* Ricardo Canul */
+Route::get('noticias/by-category-id/{id}', [ArticlesController::class, 'getArticlesByCategoryId']);
+

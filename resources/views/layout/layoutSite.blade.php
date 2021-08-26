@@ -16,18 +16,83 @@
         </div>
         <div class="categoryGroup">
             <a href="{{ url('/inicio') }}" class="item__home">Inicio</a>
-            <div class="categoryGroup__item">
-                @for ($i = 1; $i <= 18; $i++)
-                    <a href="#" class="item">Item {{ $i }}</a>
-                @endfor
+            <div class="categoryGroup__item" id="categoryGroup-content">
             </div>
         </div>
     </header>
-    <div class="content">
+    <div class="content" id="content">
         @yield('content')
     </div>
 </body>
 
 @yield('script')
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<script>
+    axios({
+        method: 'get',
+        url: 'api/categoria'
+    }).then((response) => {
+        let getId = document.getElementById('categoryGroup-content');
+
+        let content = '';
+
+        const dataLength = response.data.length;
+
+        for (let index = 0; index < dataLength; index++) {
+            const data = response.data[index];
+            content += `
+                <a href="" class="item" onclick="filterArticlesByCategoryId(${data.id})" >${data.name}</a>
+            `;
+        }
+
+        getId.innerHTML = content;
+
+    })
+
+
+    const filterArticlesByCategoryId = (category_id) => {
+        event.preventDefault();
+        /* Aqui llamas con axios a tu api, y solicitas una nueva lista de noticias por el id de la categoria */
+        axios({
+            method: 'get',
+            url: 'api/noticias/by-category-id/' + category_id,
+        }).then(response => {
+            console.log(response.data);
+            const getIdContent = document.getElementById('recent-articles');
+            const getIdTitle = document.getElementById('title-recent');
+            const getTag = document.getElementById('divider');
+
+            if (getIdTitle && getTag) {
+                getIdTitle.remove()
+                getTag.remove()
+            }
+
+            let element = '';
+            let long = response.data.length;
+            for (let i = 0; i < long; i++) {
+                const data = response.data[i];
+
+                element += `
+                <div class="article__card">
+                        <img src="https://s.france24.com/media/display/688585be-9060-11ea-8c8d-005056a98db9/w:1400/p:16x9/journal-1920x1080_es.webp"
+                            alt="" class="article__news_cover">
+                            <div class="article__info">
+                                <span class="badge-custom">Categoría</span>
+                                <h1 class="article__title"> ${data.name} </h1>
+                                <p class="article__date"> ${data.published_at} </p>
+
+                                <div class="article__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem dolorem sapiente eaque eum deleniti alias vero dicta voluptate aut sunt magnam inventore quaerat reiciendis voluptates, vitae iste amet adipisci aliquam.</div>
+                                <p class="article__author"><span>Por: </span> ${data.author} </p>
+                            </div>
+                    </div>
+                `;
+            };
+
+            getIdContent.innerHTML = element;
+        });
+    };
+</script>
 
 </html>
