@@ -10,7 +10,7 @@ class Article extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name','description','author','category_id'];
+    protected $fillable = ['name','description','author','image','category_id'];
 
     public function comments(){
         return $this->hasMany(Comment::class);

@@ -26,11 +26,19 @@
                             {{ $category->category_group_id == $category->id ? 'selected' : '' }}>
                             {{ $category->name }} </option>
                     @endforeach
-                    {{-- @foreach ($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                    @endforeach --}}
                 @endif
             </select>
+        </div>
+
+        <div class="form__group">
+            <label for="image">Autor</label>
+            <input type="file" name="image" id="image">
+            @if ($action == 'create')
+                <img width="100px" src="" alt="">
+            @else
+                <img width="100px" src="{{ asset('storage') . '/' . $article->image }}" alt="">
+            @endif
+
         </div>
 
         <div class="form-group">

@@ -4,12 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Category;
-use App\Models\CategoryGroup;
-use Exception;
+use Illuminate\Contracts\Cache\Store;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Artisan;
-use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Storage;
 class ArticleController extends Controller
 {
 
@@ -20,7 +17,7 @@ class ArticleController extends Controller
      */
     public function index()
     {
-        $articleData['articles'] = Article::paginate(5);
+        $articleData['articles'] = Article::orderByRaw('created_at DESC')->paginate(5);
         return view('admin.articles.index', $articleData);
     }
 
@@ -46,6 +43,11 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         $articleData = request()->except('_token');
+
+        if($request->hasFile('image')){
+            $articleData['image'] = $request->file('image')->store('uploads','public');
+        }
+
         Article::create($articleData);
         return redirect()->route('noticias.index')->with('message','La noticia se ha creado correctamente.');
     }
@@ -82,10 +84,18 @@ class ArticleController extends Controller
      * @param  \App\Models\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update($id)
+    public function update(Request $request, $id)
     {
         $articleData = request()->except('_token','_method');
+
+        if($request->hasFile('image')){
+            $article = Article::findOrFail($id);
+            Storage::delete('public/'.$article->image);
+            $articleData['image'] = $request->file('image')->store('uploads','public');
+        }
+
         Article::where('id','=',$id)->update($articleData);
+        $article = Article::findOrFail($id);
         return redirect()->route('noticias.index')->with('message','Se ha editado con éxito la noticia.');
     }
 
@@ -97,7 +107,11 @@ class ArticleController extends Controller
      */
     public function destroy($id)
     {
-        Article::destroy($id);
+
+        $article = Article::findOrFail($id);
+        if(Storage::delete('public/'.$article->image)){
+            Article::destroy($id);
+        }
         return redirect()->route('noticias.index')->with('message','Se ha eliminado con éxito la noticia,');
     }
 }

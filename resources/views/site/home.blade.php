@@ -25,7 +25,7 @@
                 const data = response.data[index];
                 recentArticle += `
                     <div class="article__card">
-                        <img src="https://s.france24.com/media/display/688585be-9060-11ea-8c8d-005056a98db9/w:1400/p:16x9/journal-1920x1080_es.webp"
+                        <img src="${data.image}"
                             alt="" class="article__news_cover">
                             <div class="article__info">
                                 <span class="badge-custom">${data.category.name}</span>

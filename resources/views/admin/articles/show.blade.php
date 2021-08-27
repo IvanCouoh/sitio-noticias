@@ -3,11 +3,9 @@
 @section('content')
     <div class="main__form">
         <h2 class="article__title__admin">{{ $article->name }}</h2>
-        <img src="https://s.france24.com/media/display/688585be-9060-11ea-8c8d-005056a98db9/w:1400/p:16x9/journal-1920x1080_es.webp"
-            alt="" class="article__image">
+        <img src="{{ asset('storage') . '/' . $article->image }}" alt="" class="article__image">
         <div class="article__info-actions">
             <div>
-
                 <div class="article__info__admin">
                     <i class='bx bx-user'></i>
                     <p>{{ $article->author }}</p>

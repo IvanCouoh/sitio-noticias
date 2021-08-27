@@ -18,6 +18,7 @@ class CreateArticlesTable extends Migration
             $table->string('name');
             $table->string('description');
             $table->string('author');
+            $table->string('image', 1000);
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamp('published_at');
