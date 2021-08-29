@@ -82,8 +82,9 @@
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script>
             const article_id = {{ $article->id }};
-
+            console.log(article_id);
             const updateCommentList = () => {
+                console.log(article_id);
                 axios({
                     method: 'get',
                     url: `/api/comentarios/${article_id}/noticia`,

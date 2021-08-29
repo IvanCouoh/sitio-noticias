@@ -7,7 +7,7 @@
     </div>
 @endsection
 
-@section('script')
+@section('scripts')
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
         axios({
@@ -23,19 +23,21 @@
 
             for (let index = 0; index < long; index++) {
                 const data = response.data[index];
-                recentArticle += `
-                    <div class="article__card">
-                        <img src="${data.image}"
-                            alt="" class="article__news_cover">
-                            <div class="article__info">
-                                <span class="badge-custom">${data.category.name}</span>
-                                <h1 class="article__title"> ${data.name} </h1>
-                                <p class="article__date"> ${data.published_at} </p>
 
-                                <div class="article__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem dolorem sapiente eaque eum deleniti alias vero dicta voluptate aut sunt magnam inventore quaerat reiciendis voluptates, vitae iste amet adipisci aliquam.</div>
-                                <p class="article__author"><span>Por: </span> ${data.author} </p>
-                            </div>
-                    </div>
+                let coverImage = data.image.includes('http') ? data.image : `storage/${data.image}`;
+
+                recentArticle += `
+                    <a href="/noticia/${data.id}" class="article__card">
+                        <img src="${coverImage}"
+                            alt="" class="article__news_cover">
+                        <div class="article__info">
+                            <span class="badge-custom">${data.category.name}</span>
+                            <h1 class="article__title"> ${data.name} </h1>
+                            <p class="article__date"> ${data.published_at} </p>
+                            <div class="article__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem dolorem sapiente eaque eum deleniti alias vero dicta voluptate aut sunt magnam inventore quaerat reiciendis voluptates, vitae iste amet adipisci aliquam.</div>
+                            <p class="article__author"><span>Por: </span> ${data.author} </p>
+                        </div>
+                    </a>
                 `
                 element.innerHTML = recentArticle;
 

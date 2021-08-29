@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="{{ asset('css/site/styles.css') }}">
     <title>Noticias</title>
 </head>
@@ -25,9 +26,10 @@
     </div>
 </body>
 
-@yield('script')
 
+<script src="https://unpkg.com/boxicons@2.0.8/dist/boxicons.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+@yield('scripts')
 
 <script>
     axios({
@@ -76,19 +78,21 @@
 
             for (let i = 0; i < long; i++) {
                 const data = response.data[i];
-                element += `
-                <div class="article__card">
-                        <img src="${data.image}"
-                            alt="" class="article__news_cover">
-                            <div class="article__info">
-                                <span class="badge-custom">${data.category.name}</span>
-                                <h1 class="article__title"> ${data.name} </h1>
-                                <p class="article__date"> ${data.published_at} </p>
 
-                                <div class="article__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem dolorem sapiente eaque eum deleniti alias vero dicta voluptate aut sunt magnam inventore quaerat reiciendis voluptates, vitae iste amet adipisci aliquam.</div>
-                                <p class="article__author"><span>Por: </span> ${data.author} </p>
-                            </div>
-                    </div>
+                let coverImage = data.image.includes('http') ? data.image : `storage/${data.image}`;
+
+                element += `
+                    <a href="/noticia/${data.id}" class="article__card">
+                        <img src="${coverImage}"
+                            alt="" class="article__news_cover">
+                        <div class="article__info">
+                            <span class="badge-custom">${data.category.name}</span>
+                            <h1 class="article__title"> ${data.name} </h1>
+                            <p class="article__date"> ${data.published_at} </p>
+                            <div class="article__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem dolorem sapiente eaque eum deleniti alias vero dicta voluptate aut sunt magnam inventore quaerat reiciendis voluptates, vitae iste amet adipisci aliquam.</div>
+                            <p class="article__author"><span>Por: </span> ${data.author} </p>
+                        </div>
+                    </a>
                 `;
             };
 

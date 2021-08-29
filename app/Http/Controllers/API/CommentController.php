@@ -28,7 +28,10 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Comment::create($request->all());
+        return [
+            'message' => 'comment publish'
+        ];
     }
 
     /**
@@ -84,5 +87,10 @@ class CommentController extends Controller
         return [
             'message' => 'comment banned'
         ];
+    }
+
+    public function getCommentArticle($article_id){
+        $comment = Article::with(['comments'])->where('id','=',$article_id)->get();
+        return $comment;
     }
 }

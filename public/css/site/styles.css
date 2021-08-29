@@ -124,6 +124,7 @@ h1, h2, h3, p {
 
 .article__info {
     padding: 1rem;
+    color: #212529;
 }
 
 .article__title {
@@ -161,4 +162,131 @@ h1, h2, h3, p {
     line-clamp: 3;
     overflow: hidden;
     margin-top: 6px;
+}
+
+.main__form {
+    background-color: var(--color_white);
+    border-radius: 10px;
+    width: 100%;
+    padding: var(--padding_content);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    overflow: hidden;
+}
+
+.main__form__comments {
+    background-color: var(--color_white);
+    border-radius: 10px;
+    width: 100%;
+    padding: var(--padding_content);
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    overflow: hidden;
+}
+
+.article__title__admin {
+    text-align: center;
+}
+
+.article__image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    margin: 15px 0;
+}
+
+.article__info-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+.article__info__admin {
+    font-size: .85rem;
+    display: flex;
+    align-items: center;
+}
+
+.comment__title {
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.comment__container {
+    display: grid;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.write__comment {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+}
+
+.comment__profile {
+    width: 50px;
+    border: 1px solid red;
+    border-radius: 50%;
+    grid-column: 3/4;
+    justify-self: center;
+}
+
+.comment__area {
+    grid-column: 4/11;
+    max-height: 150px;
+    min-height: 150px;
+}
+
+.publish__comment {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+}
+
+.button {
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid;
+    padding: 7px 15px;
+    text-align: center;
+    width: max-content;
+    cursor: pointer;
+    justify-self: right;
+    grid-column: 10/11;
+}
+
+.public {
+    background-color: var(--color_primary);
+    color: var(--color_white) !important;
+}
+
+.comment__publish {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+}
+
+.comment__publish-profile {
+    width: 40px;
+    border: 1px solid red;
+    border-radius: 50%;
+    justify-self: center;
+    align-items: center;
+    grid-column: 3/4;
+}
+
+.comment__info {
+    grid-column: 4/11;
+}
+
+.comment__data {
+    display: flex;
+    gap: 1rem;
+    color: var(--color_primary);
+    font-weight: 600;
+}
+
+.input {
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #bdbcbc;
+    padding: 10px;
+    font-family: var(--font_family);
+    font-size: 1rem;
 }

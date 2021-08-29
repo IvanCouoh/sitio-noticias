@@ -28,4 +28,5 @@ Route::get('noticias/recientes', [ArticlesController::class, 'getArticle']);
 Route::get('categoria', [CategoriesController::class, 'categoryName']);
 Route::get('seccion/{id}', [CategoriesController::class, 'show']);
 Route::get('noticias/by-category-id/{id}', [ArticlesController::class, 'getArticlesByCategoryId']);
-Route::get('prueba',[ArticlesController::class, 'getArticleCategory']);
+Route::get('noticias/article-id/{id}', [ArticlesController::class, 'getArticlesId']);
+Route::get('commentario/{article_id}',[CommentController::class, 'getCommentArticle']);

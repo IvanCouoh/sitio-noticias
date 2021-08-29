@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Article;
+use App\Models\Comment;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -72,6 +73,12 @@ class ArticlesController extends Controller
 
     public function getArticlesByCategoryId($id){
         $articles = Category::with(['articles', 'articles.category'])->where('id', $id)->first()->articles;
+
+        return $articles;
+    }
+
+    public function getArticlesId($id){
+        $articles = Article::where('id', $id)->first();
 
         return $articles;
     }

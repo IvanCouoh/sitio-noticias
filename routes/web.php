@@ -31,3 +31,4 @@ Route::prefix('admin')->group(function () {
 
 Route::get('/', [PageController::class, 'home'])->name('site.home');
 
+Route::get('noticia/{id}', [PageController::class, 'details'])->name('site.details');
