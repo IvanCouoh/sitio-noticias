@@ -36,7 +36,9 @@
             @if ($action == 'create')
                 <img width="100px" src="" alt="">
             @else
-                <img width="100px" src="{{ asset('storage') . '/' . $article->image }}" alt="">
+                <img width="100px"
+                    src="{{ strpos($article->image, 'http') !== false ? $article->image : asset('storage') . '/' . $article->image }}"
+                    alt="">
             @endif
 
         </div>

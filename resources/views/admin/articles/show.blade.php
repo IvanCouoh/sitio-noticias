@@ -3,7 +3,8 @@
 @section('content')
     <div class="main__form">
         <h2 class="article__title__admin">{{ $article->name }}</h2>
-        <img src="{{ asset('storage') . '/' . $article->image }}" alt="" class="article__image">
+        <img src="{{ strpos($article->image, 'http') !== false ? $article->image : asset('storage') . '/' . $article->image }}"
+            alt="" class="article__image">
         <div class="article__info-actions">
             <div>
                 <div class="article__info__admin">
