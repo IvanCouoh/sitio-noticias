@@ -2,9 +2,13 @@
 
 @section('content')
     @if (Session::has('message'))
-        <p class="alet-message">
-            {{ Session::get('message') }}
-        </p>
+        <script>
+            toastr.options = {
+                "closeButton": true,
+                "progressBar": true
+            }
+            toastr.success("{{ session('message') }}");
+        </script>
     @endif
 
     <h3 class="main__subtitle">Mis noticias publicadas</h3>

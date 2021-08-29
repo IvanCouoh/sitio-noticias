@@ -3,8 +3,13 @@
 @section('content')
 
     @if (Session::has('message'))
-        {{ Session::get('message') }}
-
+        <script>
+            toastr.options = {
+                "closeButton": true,
+                "progressBar": true
+            }
+            toastr.success("{{ session('message') }}");
+        </script>
     @endif
 
 <title>@section('title', 'Editar grupo de categoría')</title>

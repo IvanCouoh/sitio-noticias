@@ -68,6 +68,11 @@
                 .then(res => {
                     const messageElement = document.getElementById('message');
                     messageElement.value = "";
+                    toastr.options = {
+                        "closeButton": true,
+                        "progressBar": true
+                    }
+                    toastr.success("Comentario publicado");
                     updateComments();
                 }).catch(error => {
                     console.log(error);
