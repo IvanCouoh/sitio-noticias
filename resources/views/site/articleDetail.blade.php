@@ -108,9 +108,9 @@
 
             axios({
                 method: 'get',
-                url: '/api/commentario/' + article_id,
+                url: '/api/comentarios/no-baneados/' + article_id + '/noticia',
             }).then(response => {
-                const long = response.data[0].comments.length;
+                const long = response.data.comments.length;
                 let getIdCommentList = document.getElementById('comment-container');
                 let getIdCantidad = document.getElementById('cantidad');
                 let catidad = '';
@@ -121,7 +121,7 @@
                         `<p style="text-align:center;">Esta noticia aún no cuenta con comentarios.</p>`;
                     getIdCommentList.innerHTML = listComments;
                 } else {
-                    response.data[0].comments.forEach(element => {
+                    response.data.comments.forEach(element => {
 
                         listComments += `
                         <div class="comment__container">

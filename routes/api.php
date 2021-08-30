@@ -23,6 +23,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::apiResource('/comentarios', CommentController::class);
 Route::get('comentarios/{article_id}/noticia', [CommentController::class, 'getArticleComments']);
+Route::get('comentarios/no-baneados/{article_id}/noticia', [CommentController::class, 'getArticleCommentsNotBanned']);
 Route::get('comentarios/{comment_id}/ban', [CommentController::class, 'banComment']);
 Route::get('noticias/recientes', [ArticlesController::class, 'getArticle']);
 Route::get('categoria', [CategoriesController::class, 'categoryName']);

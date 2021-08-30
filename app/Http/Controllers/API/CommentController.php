@@ -69,8 +69,21 @@ class CommentController extends Controller
         //
     }
 
+    /* Devuelce articulo con todos sus comentarios */
     public function getArticleComments($article_id){
         $article = Article::with(['comments'])->where('id', $article_id)->get();
+        return $article;
+    }
+
+    /* dvuelve articulo con sus comentarios no baneados */
+    public function getArticleCommentsNotBanned($article_id){
+        $article = Article::with([
+                                'comments' => function($query){
+                                    return $query->where('is_banned', false);
+                                },
+                            ])
+                            ->where('id', $article_id)
+                            ->first();
         return $article;
     }
 
