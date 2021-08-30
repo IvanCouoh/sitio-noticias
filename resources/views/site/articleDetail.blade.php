@@ -35,8 +35,21 @@
             <div class="write__comment">
                 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrw6TFJfxQTpixJo4fe2VDEBKrNfyPUhkTdw&usqp=CAU"
                     alt="" class="comment__profile">
-                <textarea name="message" id="message" cols="30" rows="10" placeholder="Escribe un comentario"
-                    class="comment__area input"></textarea>
+                <div class="container__inputs">
+                    <div class="form__group">
+                        <label for="author">Nombre</label>
+                        <input type="text" class="input" id="author">
+                    </div>
+                    <div class="form__group">
+                        <label for="email">Email</label>
+                        <input type="email" class="input" id="email">
+                    </div>
+                </div>
+                <div class="form__group text-area">
+                    <label for="message">Mensaje</label>
+                    <textarea name="message" id="message" cols="30" rows="10" placeholder="Escribe un comentario"
+                        class="comment__area input"></textarea>
+                </div>
             </div>
             <div class="publish__comment">
                 <input type="submit" class="button public" value="Publicar">
@@ -55,19 +68,26 @@
         const form = document.getElementById('idForm');
         form.addEventListener('submit', (e) => {
             e.preventDefault();
+            const authorElement = document.getElementById('author');
+            const emailElement = document.getElementById('email');
             const messageElement = document.getElementById('message');
             const article_id = {{ $article->id }}
 
             const data = {
-                author: 'Javier',
-                email: 'javier@gmail.com',
+                author: authorElement.value,
+                email: emailElement.value,
                 message: messageElement.value,
                 article_id: article_id,
             }
             axios.post('/api/comentarios', data)
                 .then(res => {
+                    const authorElement = document.getElementById('author');
+                    const emailElement = document.getElementById('email');
                     const messageElement = document.getElementById('message');
+                    authorElement.value = "";
+                    emailElement.value = "";
                     messageElement.value = "";
+
                     toastr.options = {
                         "closeButton": true,
                         "progressBar": true
@@ -75,7 +95,11 @@
                     toastr.success("Comentario publicado");
                     updateComments();
                 }).catch(error => {
-                    console.log(error);
+                    toastr.options = {
+                        "closeButton": true,
+                        "progressBar": true
+                    }
+                    toastr.error("El comentario no pudo ser publicado, intente más tarde");
                 });
         })
 

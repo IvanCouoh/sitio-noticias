@@ -28,10 +28,11 @@ class CommentController extends Controller
      */
     public function store(Request $request)
     {
+        $author = $request['author'];
+        if(empty($author)){
+            $request['author'] = "Anonimo";
+        }
         Comment::create($request->all());
-        return [
-            'message' => 'comment publish'
-        ];
     }
 
     /**

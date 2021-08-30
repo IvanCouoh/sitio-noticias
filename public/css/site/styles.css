@@ -230,7 +230,6 @@ h1, h2, h3, p {
 }
 
 .comment__area {
-    grid-column: 4/11;
     max-height: 150px;
     min-height: 150px;
 }
@@ -289,4 +288,22 @@ h1, h2, h3, p {
     padding: 10px;
     font-family: var(--font_family);
     font-size: 1rem;
+}
+
+.container__inputs {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+    gap: .5rem;
+    grid-column: 4/11;
+    margin-bottom: .5rem;
+}
+
+.form__group {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.text-area {
+    grid-column: 4/11;
 }
