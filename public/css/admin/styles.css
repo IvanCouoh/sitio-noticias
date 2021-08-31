@@ -51,8 +51,27 @@ h1, h2, h3, p {
     position: fixed;
     height: var(--height_header);
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--padding_content);
 }
 
+.logout, .my-site{
+    color: var(--color_letter);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: .3rem;
+}
+
+.logout:hover{
+    color: #c91b1b !important;
+}
+
+.my-site{
+    padding-left: var(--width_aside);
+}
 .aside {
     background-color: var(--color_blue);
     grid-area: aside;
@@ -81,6 +100,7 @@ h1, h2, h3, p {
 .content__name {
     word-wrap: break-word;
     width: 114px;
+    text-align: left;
 }
 
 .aside__links {

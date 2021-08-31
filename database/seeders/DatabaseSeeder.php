@@ -26,6 +26,6 @@ class DatabaseSeeder extends Seeder
         $this->call(CategorySeeder::class);
         Article::factory(10)->create();
         Comment::factory(10)->create();
-
+        $this->call(UserSeeder::class);
     }
 }

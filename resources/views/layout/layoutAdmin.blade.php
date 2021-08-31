@@ -23,12 +23,25 @@
 
 <body>
     <div class="container__custom">
-        <header class="header"></header>
+        <header class="header">
+            <a href="/" target="_blank" rel="noopener noreferrer" class="my-site">Ver mi sitio</a>
+            <span>
+                <a class="logout" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                                     document.getElementById('logout-form').submit();">
+                    <i class='bx bx-log-out' style="font-size: 20px"></i>
+                    {{ __('Cerrar sesion') }}
+                </a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                    @csrf
+                </form>
+            </span>
+        </header>
         <aside class="aside">
             <div class="content__info">
                 <img src="https://i.pinimg.com/736x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg" alt="profile_admin"
                     class="content__profile">
-                <div class="content__name">Javier Herrera</div>
+                <div class="content__name">{{ Auth::user()->name }}</div>
             </div>
             <div class="aside__links">
                 <a href="{{ route('categorias.index') }}" class="link" title="Alta de categorías">

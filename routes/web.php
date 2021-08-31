@@ -6,7 +6,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryGroupController;
 use App\Http\Controllers\CKEditorController;
 use App\Http\Controllers\PageController;
-use App\Models\Category;
+use App\Http\Controllers\Auth\LoginController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,11 @@ use App\Models\Category;
 */
 
 Route::prefix('admin')->group(function () {
+    Auth::routes(['register'=>false]);
+    Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+});
+
+Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::resource('categorias', CategoryController::class);
 
     Route::resource('grupo_categoria', CategoryGroupController::class);
@@ -32,3 +38,12 @@ Route::prefix('admin')->group(function () {
 Route::get('/', [PageController::class, 'home'])->name('site.home');
 
 Route::get('noticia/{id}', [PageController::class, 'details'])->name('site.details');
+
+
+
+Route::get('/admin/categorias', [CategoryController::class, 'index']);
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin/categorias', [CategoryController::class, 'index'])->name('categorias.index');
+});
+
