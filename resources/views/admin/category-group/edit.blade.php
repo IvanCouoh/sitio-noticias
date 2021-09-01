@@ -1,4 +1,4 @@
-@extends('layout.layoutAdmin')
+@extends('layouts.admin')
 
 @section('content')
 
@@ -22,7 +22,7 @@
         <form action="{{ route('grupo_categoria.update', $categoryGroup->id) }}" method="Post" class="form">
             @csrf
             {{ method_field('PATCH') }}
-            @include('admin.category_group.form',['text'=>'Guardar edición'])
+            @include('admin.category-group.form',['text'=>'Guardar edición'])
         </form>
     </div>
 

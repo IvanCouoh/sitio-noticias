@@ -25,7 +25,7 @@ class CategoryGroupController extends Controller
     public function create()
     {
         $dataCat['categories'] = CategoryGroup::all();
-        return view('admin.category_group.create', $dataCat);
+        return view('admin.category-group.create', $dataCat);
     }
 
     /**
@@ -73,7 +73,7 @@ class CategoryGroupController extends Controller
     public function edit($id)
     {
         $categoryGroup = CategoryGroup::findOrFail($id);
-        return view('admin.category_group.edit', compact('categoryGroup'));
+        return view('admin.category-group.edit', compact('categoryGroup'));
     }
 
     /**

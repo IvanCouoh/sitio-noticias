@@ -1,4 +1,4 @@
-@extends('layout.layoutSite')
+@extends('layouts.site')
 
 @section('content')
     <h1 class="title-recent" id="title-recent">Noticias recientes</h1>

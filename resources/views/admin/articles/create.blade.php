@@ -1,4 +1,4 @@
-@extends('layout.layoutAdmin')
+@extends('layouts.admin')
 
 @section('content')
     <div class="col-1-custom">

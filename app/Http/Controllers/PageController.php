@@ -19,6 +19,6 @@ class PageController extends Controller
     {
 
         $article['article'] = Article::findOrFail($id);
-        return view('site.articleDetail', $article);
+        return view('site.article-details', $article);
     }
 }
