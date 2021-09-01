@@ -57,7 +57,7 @@ h1, h2, h3, p {
     padding: var(--padding_content);
 }
 
-.logout, .my-site{
+.logout, .my-site {
     color: var(--color_letter);
     font-weight: 500;
     display: flex;
@@ -65,13 +65,14 @@ h1, h2, h3, p {
     gap: .3rem;
 }
 
-.logout:hover{
+.logout:hover {
     color: #c91b1b !important;
 }
 
-.my-site{
+.my-site {
     padding-left: var(--width_aside);
 }
+
 .aside {
     background-color: var(--color_blue);
     grid-area: aside;
@@ -341,6 +342,25 @@ label {
 #list-comments {
     height: 500px;
     overflow-x: auto;
+}
+
+.profile__container__data {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    grid-template-rows: max-content 1fr;
+    gap: 1rem;
+}
+
+.profile__image {
+    width: 157px;
+    height: 157px;
+    border-radius: 50%;
+}
+
+.upload__image {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 @media screen and (max-width: 1060px) {

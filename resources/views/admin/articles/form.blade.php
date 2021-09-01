@@ -71,8 +71,7 @@
 </div>
 
 @section('javascript')
-    <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
-    <script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+    <script src="//cdn.ckeditor.com/4.16.2/full/ckeditor.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('.ckeditor').ckeditor();

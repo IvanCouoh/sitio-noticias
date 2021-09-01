@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryGroupController;
 use App\Http\Controllers\CKEditorController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,13 +21,18 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+/* Admin routes without auth protection */
 Route::prefix('admin')->group(function () {
-    Auth::routes(['register'=>false]);
+    Auth::routes(['register'=>false, 'reset'=>false]);
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 });
 
+/* Admin routes with auth protection */
 Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::resource('categorias', CategoryController::class);
+
+    Route::get('profile', [UserController::class, 'profileEdit'])->name('admin.profile.edit');
+    Route::patch('profile/{id}', [UserController::class, 'profileUpdate'])->name('admin.profile.update');
 
     Route::resource('grupo_categoria', CategoryGroupController::class);
 
@@ -35,15 +41,7 @@ Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::post('ckeditor/upload', [CKEditorController::class, 'upload'])->name('ckeditor.image-upload');
 });
 
+
+/* Site routes */
 Route::get('/', [PageController::class, 'home'])->name('site.home');
-
 Route::get('noticia/{id}', [PageController::class, 'details'])->name('site.details');
-
-
-
-Route::get('/admin/categorias', [CategoryController::class, 'index']);
-
-Route::middleware(['auth'])->group(function () {
-    Route::get('/admin/categorias', [CategoryController::class, 'index'])->name('categorias.index');
-});
-

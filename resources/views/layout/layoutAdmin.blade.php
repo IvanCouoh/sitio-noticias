@@ -39,9 +39,9 @@
         </header>
         <aside class="aside">
             <div class="content__info">
-                <img src="https://i.pinimg.com/736x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg" alt="profile_admin"
-                    class="content__profile">
-                <div class="content__name">{{ Auth::user()->name }}</div>
+                <img src="{{ strpos(Auth::user()->profile, 'http') !== false ? Auth::user()->profile : asset('storage') . '/' . Auth::user()->profile }}"
+                    alt="profile_admin" class="content__profile">
+                <div class="content__name link__name">{{ Auth::user()->name }}</div>
             </div>
             <div class="aside__links">
                 <a href="{{ route('categorias.index') }}" class="link" title="Alta de categorías">
@@ -57,6 +57,11 @@
                 <a href="{{ route('noticias.index') }}" class="link" title="Mis publicaciones">
                     <box-icon type='solid' name='archive-out' color="white"></box-icon>
                     <p class="link__name">Mis publicaciones</p>
+                </a>
+
+                <a href="{{ route('admin.profile.edit') }}" class="link" title="Mi perfil">
+                    <box-icon type='solid' name='user-badge' color="white"></box-icon>
+                    <p class="link__name">Mi perfil</p>
                 </a>
             </div>
         </aside>

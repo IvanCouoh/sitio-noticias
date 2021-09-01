@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
             'name' => 'Super user',
             'email' => 'superuser@demo.com',
             'password' => Hash::make('12345'),
+            'profile' => 'https://i.pinimg.com/736x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg',
         ]);
 
         /* Administrador */
@@ -27,6 +28,7 @@ class UserSeeder extends Seeder
             'name' => 'Administrador',
             'email' => 'admin@demo.com',
             'password' => Hash::make('12345'),
+            'profile' => 'https://pbs.twimg.com/media/EYVxlOSXsAExOpX.jpg'
         ]);
     }
 }
