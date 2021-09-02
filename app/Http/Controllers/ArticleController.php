@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\CategoryGroup;
 use Illuminate\Contracts\Cache\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -28,9 +29,8 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        $categoryData['categories'] = Category::all();
-        // $categoryGroup = DB::table('category_groups')->where('name');
-        // $category = DB::table('Category')->where('category_id', $categoryGroup->id)->get();
+        $grupo = 'Noticias';
+        $categoryData['categories'] = CategoryGroup::with(['categories'])->where('name', $grupo)->first()->categories;
         return view('admin.articles.create', $categoryData);
     }
 

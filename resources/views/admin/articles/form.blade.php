@@ -31,7 +31,7 @@
         </div>
 
         <div class="form__group">
-            <label for="image">Autor</label>
+            <label for="image">Imagen</label>
             <input type="file" name="image" id="image">
             @if ($action == 'create')
                 <img width="100px" src="" alt="">
