@@ -71,7 +71,7 @@
     </div>
     <script src="https://unpkg.com/boxicons@2.0.8/dist/boxicons.js"></script>
     <script src="{{ asset('js/main.js') }}"></script>
-    @yield('javascript');
+    @yield('javascript')
 </body>
 
 </html>

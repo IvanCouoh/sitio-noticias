@@ -21,7 +21,7 @@
             <div class="upload__image">
                 <img src="{{ strpos(Auth::user()->profile, 'http') !== false ? Auth::user()->profile : asset('storage') . '/' . Auth::user()->profile }}"
                     id="profile" alt="" class="profile__image">
-                <input type="file" id="profile" name="profile" value="{{ Auth::user()->profile }}">
+                <input type="file" name="profile">
             </div>
             <div class="profile__data">
                 <p class="card__article__title">Mis datos</p>

@@ -99,7 +99,7 @@ class UserController extends Controller
         }
 
         if(empty($request['password'])){
-            $userData = request()->except('_token','_method','password');
+            unset($userData['password']);
         }else{
             $userData['password'] = Hash::make($request['password']);
         }
