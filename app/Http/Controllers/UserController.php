@@ -92,6 +92,19 @@ class UserController extends Controller
     public function profileUpdate(Request $request, $id){
         $userData = request()->except('_token','_method');
 
+        $this->validate($request, [
+            'name' => 'required|string|max:250',
+            'email' => 'required|string|email|max:250',
+            'profile' => 'required|mimes:jpg,jepg,png',
+        ],[
+            'name.required' => 'El nombre es requerido.',
+            'name.max' => 'El nombre es demaciado largo.',
+            'email.required' => 'El email es requerido.',
+            'email.max' => 'El email es demaciado largo.',
+            'email.email' => 'El email debe llevar un caracter @',
+            'profile.mimes' => 'Solo puede seleccionar archivo .jpg .jpeg o .png.',
+        ]);
+
         if($request->hasFile('profile')){
             $user = User::findOrFail($id);
             Storage::delete('public/'.$user->profile);

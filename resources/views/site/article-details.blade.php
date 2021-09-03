@@ -122,29 +122,26 @@
                     getIdCommentList.innerHTML = listComments;
                 } else {
                     response.data.comments.forEach(element => {
-
                         listComments += `
-                        <div class="comment__container">
-                            <div class="comment__publish">
-                                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrw6TFJfxQTpixJo4fe2VDEBKrNfyPUhkTdw&usqp=CAU"
-                                    alt="" class="comment__publish-profile">
-                                <div class="comment__info">
-                                    <div class="comment__data">
-                                        <p>${element.author}</p>
-                                        <p>${element.created_at}</p>
+                            <div class="comment__container">
+                                <div class="comment__publish">
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrw6TFJfxQTpixJo4fe2VDEBKrNfyPUhkTdw&usqp=CAU"
+                                        alt="" class="comment__publish-profile">
+                                    <div class="comment__info">
+                                        <div class="comment__data">
+                                            <p>${element.author}</p>
+                                            <p>${element.created_at}</p>
+                                        </div>
+                                        <p>${element.message}</p>
                                     </div>
-                                    <p>${element.message}</p>
                                 </div>
                             </div>
-                        </div>
                     `;
-
                         getIdCommentList.innerHTML = listComments;
                     });
                 }
             })
         }
-
         updateComments();
     </script>
 @endsection

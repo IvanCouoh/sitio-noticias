@@ -39,17 +39,14 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $fields = [
-            'name' => 'required|string|max:100',
-            // 'category_group_id' => 'required|in:Asigne una categoría',
-        ];
-
-        $messages=[
+        $this->validate($request, [
+            'name' => 'required|string|max:250',
+            'category_group_id' => 'required|not_in:0',
+        ],[
             'name.required' => 'El nombre es requerido.',
-            // 'category_group_id.required' => 'Se requiere una categoría.',
-        ];
-
-        $this->validate($request, $fields, $messages);
+            'name.max' => 'El nombre es demaciado largo.',
+            'category_group_id.required' => 'Se requiere seleccionar una categoría.',
+        ]);
 
         $categoryData = request()->except('_token');
 

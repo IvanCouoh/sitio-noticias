@@ -44,6 +44,25 @@ class ArticleController extends Controller
     {
         $articleData = request()->except('_token');
 
+        $this->validate($request, [
+            'name' => 'required|string|max:250',
+            'author' => 'required|string|max:250',
+            'category_id' => 'required|not_in:0',
+            'image' => 'required|mimes:jpg,jepg,png',
+            'description' => 'required|string|min:20|max:100000',
+        ],[
+            'name.required' => 'El nombre es requerido.',
+            'name.max' => 'El nombre es demaciado largo.',
+            'author.required' => 'El autor es requerido.',
+            'author.max' => 'El autor es demaciado largo.',
+            'category_id.required' => 'Se requiere seleccionar una categoría.',
+            'image.required' => 'La imagen es requerida.',
+            'image.mimes' => 'Solo puede seleccionar archivo .jpg .jpeg o .png.',
+            'description.required' => 'La descripción es requerida.',
+            'description.min' => 'La descripción es demasiado corta.',
+            'description.max' => 'La descripción es demasiada larga.',
+        ]);
+
         if($request->hasFile('image')){
             $articleData['image'] = $request->file('image')->store('uploads','public');
         }
