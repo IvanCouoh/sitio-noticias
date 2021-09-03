@@ -97,7 +97,6 @@
                             <span class="badge-custom">${data.category.name}</span>
                             <h1 class="article__title"> ${data.name} </h1>
                             <p class="article__date"> ${data.published_at} </p>
-                            <div class="article__text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem dolorem sapiente eaque eum deleniti alias vero dicta voluptate aut sunt magnam inventore quaerat reiciendis voluptates, vitae iste amet adipisci aliquam.</div>
                             <p class="article__author"><span>Por: </span> ${data.author} </p>
                         </div>
                     </a>

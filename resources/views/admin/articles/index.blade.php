@@ -19,9 +19,6 @@
                 <div>
                     <h5 class="card__article__title">{{ $article->name }}</h5>
                 </div>
-                <div class="card__article__description">
-                    <p>{!! $article->description !!}</p>
-                </div>
                 <div class="card__article__time">
                     <i class='bx bx-time-five'></i>
                     <p>{{ $article->published_at }}</p>
