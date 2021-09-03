@@ -31,8 +31,8 @@ Route::prefix('admin')->group(function () {
 Route::middleware(['auth'])->prefix('admin')->group(function () {
     Route::resource('categorias', CategoryController::class);
 
-    Route::get('profile', [UserController::class, 'profileEdit'])->name('admin.profile.edit');
-    Route::patch('profile/{id}', [UserController::class, 'profileUpdate'])->name('admin.profile.update');
+    Route::get('perfil', [UserController::class, 'profileEdit'])->name('admin.profile.edit');
+    Route::patch('perfil/{id}', [UserController::class, 'profileUpdate'])->name('admin.profile.update');
 
     Route::resource('grupo_categoria', CategoryGroupController::class);
 
