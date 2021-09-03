@@ -76,16 +76,16 @@ class CommentController extends Controller
     }
 
     /* dvuelve articulo con sus comentarios no baneados */
-    public function getArticleCommentsNotBanned($article_id){
+    public function getArticleCommentsNotBanned(Request $request, $article_id){
         $article = Article::with([
                                 'comments' => function($query){
-                                    return $query->where('is_banned', false);
+                                    $query->where('is_banned', false)->orderByRaw('created_at DESC')->paginate(5);
                                 },
                             ])
                             ->where('id', $article_id)
                             ->first();
         return $article;
-    }
+}
 
     public function banComment($comment_id){
         $comment = Comment::findOrFail($comment_id);

@@ -276,7 +276,7 @@ h1, h2, h3, p {
 
 .comment__data {
     display: flex;
-    gap: 1rem;
+    gap: 0.5rem;
     color: var(--color_primary);
     font-weight: 600;
 }

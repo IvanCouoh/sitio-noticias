@@ -59,7 +59,6 @@
         <p class="comment__title">Comentarios (<span id="cantidad"></span>)</p>
         <div class="comment__container" id="comment-container">
         </div>
-
     </div>
 @endsection
 
@@ -121,7 +120,16 @@
                         `<p style="text-align:center;">Esta noticia aún no cuenta con comentarios.</p>`;
                     getIdCommentList.innerHTML = listComments;
                 } else {
+                    const months = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio',
+                        'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'
+                    ];
+
                     response.data.comments.forEach(element => {
+                        const date = new Date(element.created_at);
+                        const amOrPm = (date.getHours() < 12) ? "AM" : "PM";
+                        const newDate = `${date.getDate()}-${months[date
+                        .getMonth()]}-${date.getUTCFullYear()} ${date.getHours()}:${date.getMinutes()} ${amOrPm}`
+
                         listComments += `
                             <div class="comment__container">
                                 <div class="comment__publish">
@@ -130,7 +138,8 @@
                                     <div class="comment__info">
                                         <div class="comment__data">
                                             <p>${element.author}</p>
-                                            <p>${element.created_at}</p>
+                                            <span>•</span>
+                                            <p>${newDate}</p>
                                         </div>
                                         <p>${element.message}</p>
                                     </div>
