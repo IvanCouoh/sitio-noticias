@@ -19,33 +19,31 @@
         </div>
 
         <div class="form__group">
-            <label for="author">Categoría</label>
-
-            @if ($action == 'create')
-                <select name="category_id" id="category_id" class="input @error('category_id') is-invalid @enderror">
-                    <option value="0">Asigne una categoría</option>
+            <label for="category_id">Categoría</label>
+            <select name="category_id" id="category_id" class="input @error('category_id') is-invalid @enderror">
+                <option value="0">Asigne una categoría</option>
+                @if ($action == 'create')
                     @foreach ($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
-                </select>
-                @error('category_id')
-                    <p class="validation-message">{{ $message }}</p>
-                @enderror
-            @endif
-
-            @if ($action == 'edit')
-                <select name="category_id" id="category_id" class="input @error('category_id') is-invalid @enderror">
-                    <option value="0">Asigne una categoría</option>
+                @else
                     @foreach ($categories as $category)
                         <option value="{{ $category->id }}"
                             {{ $category->category_group_id == $category->id ? 'selected' : '' }}>
                             {{ $category->name }} </option>
                     @endforeach
-                </select>
-                @error('category_id')
-                    <p class="validation-message">{{ $message }}</p>
-                @enderror
-            @endif
+
+                @endif
+            </select>
+
+
+            {{-- <label>Categoria: {{ $cactegory_id }}</label>
+            <label>Articulo: {{ $article }}</label> --}}
+            {{-- <label>Grupo de categoria: {{ $categoryGroup_id }}</label> --}}
+
+            @error('category_id')
+                <p class="validation-message">{{ $message }}</p>
+            @enderror
         </div>
 
         <div class="form__group">

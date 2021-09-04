@@ -92,8 +92,9 @@ class ArticleController extends Controller
     public function edit($id)
     {
         $article = Article::findOrFail($id);
-        $categories = Category::all();
-        return view('admin.articles.edit', compact('article', 'categories'));
+        $grupo = 'Noticias';
+        $categories = CategoryGroup::with(['categories'])->where('name', $grupo)->first()->categories;
+        return view('admin.articles.edit', compact('article','categories'));
     }
 
     /**
