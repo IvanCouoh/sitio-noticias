@@ -376,3 +376,7 @@ label {
         display: none;
     }
 }
+
+.article__id{
+    display: none;
+}

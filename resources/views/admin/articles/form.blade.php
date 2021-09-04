@@ -35,12 +35,6 @@
 
                 @endif
             </select>
-
-
-            {{-- <label>Categoria: {{ $cactegory_id }}</label>
-            <label>Articulo: {{ $article }}</label> --}}
-            {{-- <label>Grupo de categoria: {{ $categoryGroup_id }}</label> --}}
-
             @error('category_id')
                 <p class="validation-message">{{ $message }}</p>
             @enderror
@@ -80,14 +74,9 @@
     </div>
 
     @if ($action == 'edit')
-        {{-- Esta sección solo será mostrada cuando se abra e formulario para la accion de editar, en create no se renderizará nada de aqui --}}
-        {{-- Esta sección será cargada y gestionada con Ajax o Axios, por lo que tendrás que crear un enpoint tipo API REST para consumirlo sin que recargue la pagina --}}
         <div class="aside-form col-3">
             <h5 class="text-center">Comentarios</h5>
-            {{-- List template --}}
-
             <div id="list-comments">
-                {{-- Se autollena --}}
             </div>
         </div>
     @endif
@@ -101,58 +90,8 @@
         });
     </script>
 
-    {{-- Solo cargar este script si se abre el formulario de editar --}}
     @if ($action == 'edit')
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-        <script>
-            const article_id = {{ $article->id }};
-            console.log(article_id);
-            const updateCommentList = () => {
-                console.log(article_id);
-                axios({
-                    method: 'get',
-                    url: `/api/comentarios/${article_id}/noticia`,
-                }).then((response) => {
-
-                    let listRowText = '';
-                    const element = document.getElementById('list-comments');
-
-                    if (response.data[0].comments == 0) {
-                        listRowText += `<p class="text-center">No hay comentarios</p>`;
-                        element.innerHTML = listRowText;
-                    } else {
-                        response.data[0].comments.forEach(item => {
-                            listRowText += `
-                            <li class="list-group-item d-flex comments__list">
-                                <span>
-                                    ${item.message}
-                                </span>
-                                <div class="actions">
-                                    <button onclick="banComment('${item.id}');" style="background: ${item.is_banned === 1 ? '#c91b1b' : '#259b39'}; color: white; height: max-content;" class="button">
-                                        ${ item.is_banned === 1 ? 'Unban' : 'Ban' }
-                                    </button>
-                                </div>
-                            </li>
-                        `;
-                        });
-
-                        element.innerHTML = listRowText;
-                    }
-                });
-            }
-
-            updateCommentList();
-
-            const banComment = (comment_id) => {
-                event.preventDefault();
-                axios({
-                    method: 'get',
-                    url: `/api/comentarios/${comment_id}/ban`,
-                }).then((response) => {
-                    console.log(response.data);
-                    updateCommentList();
-                });
-            }
-        </script>
+        <script src="{{ asset('js/admin/comments.js') }}"></script>
     @endif
 @endsection

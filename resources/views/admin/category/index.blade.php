@@ -15,11 +15,9 @@
 <title>@section('title', 'Categorías')</title>
 
 <div class="container__main">
-    {{-- CATEGORY GROUP --}}
     <div class="main__list">
         <div class="main_head">
             <h3 class="main__subtitle">Grupo de categorías</h3>
-            {{-- Aqui esta el link crudo igual.... cambialo por nombre de la ruta --}}
             <a href="{{ route('grupo_categoria.create') }}" class="button success">Nuevo</a>
         </div>
         @foreach ($categoryGroups as $categoryGroup)
@@ -42,7 +40,6 @@
         @endforeach
     </div>
 
-    {{-- CATEGORY --}}
     <div class="main__list">
         <div class="main_head">
             <h3 class="main__subtitle">Categorías</h3>

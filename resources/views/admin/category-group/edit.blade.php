@@ -16,7 +16,6 @@
 
 <div class="col-1-custom">
 
-    {{-- CATEGORY GROUP --}}
     <div class="main__form">
         <h3 class="main__subtitle">Editar grupo de categoría</h3>
         <form action="{{ route('grupo_categoria.update', $categoryGroup->id) }}" method="Post" class="form">

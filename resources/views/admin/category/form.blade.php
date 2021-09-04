@@ -14,17 +14,12 @@
 
 
         @if ($method == 'create')
-            {{-- Esto sucede si creamos un nuevo registro y no hay ningun ctegory_group_id seleccionado porque no existe aun el registro --}}
             @foreach ($categoryGroups as $categoryGroup)
                 <option value="{{ $categoryGroup->id }}"> {{ $categoryGroup->name }} </option>
             @endforeach
         @else
-            {{-- Si no es create entonces la unica opcion que queda es edit... en caso que hayan mas opciones se tendría que hacer mas if validando, aqui no aplica, solo tenemos 2 posibles valores 'create' y 'edit' --}}
-            {{-- primero validamos que $category exista sino marcará error la siguiente consulta a $category->category_group_id aunque en teoria deberia estár mas que validado
-                por la variable que mande al formulario determinando que accion hacemos, si create o edit --}}
             @isset($category)
                 @foreach ($categoryGroups as $categoryGroup)
-                    {{-- Necesitamos recuperar el id del category_group_id que tiene este elemento y marcarlo como seleccionado cuando el form sea edit --}}
                     <option value="{{ $categoryGroup->id }}"
                         {{ $category->category_group_id == $categoryGroup->id ? 'selected' : '' }}>
                         {{ $categoryGroup->name }} </option>

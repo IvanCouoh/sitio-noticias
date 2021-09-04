@@ -69,13 +69,11 @@ class CommentController extends Controller
         //
     }
 
-    /* Devuelce articulo con todos sus comentarios */
     public function getArticleComments($article_id){
         $article = Article::with(['comments'])->where('id', $article_id)->get();
         return $article;
     }
 
-    /* dvuelve articulo con sus comentarios no baneados */
     public function getArticleCommentsNotBanned(Request $request, $article_id){
         $article = Article::with([
                                 'comments' => function($query){
@@ -90,7 +88,6 @@ class CommentController extends Controller
     public function banComment($comment_id){
         $comment = Comment::findOrFail($comment_id);
 
-        /* Para que funcione como toggle */
         if($comment->is_banned == true){
             $comment->is_banned = false;
         }else{

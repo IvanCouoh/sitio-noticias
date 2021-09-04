@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
-use App\Models\Category;
 use App\Models\CategoryGroup;
-use Illuminate\Contracts\Cache\Store;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 class ArticleController extends Controller

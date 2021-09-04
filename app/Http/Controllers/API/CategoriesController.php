@@ -4,7 +4,6 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Article;
-use App\Models\Category;
 use App\Models\CategoryGroup;
 use Illuminate\Http\Request;
 
@@ -17,8 +16,7 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        // $category = Article::where('category_id','=',2)->get();
-        // return $category;
+        //
     }
 
     /**

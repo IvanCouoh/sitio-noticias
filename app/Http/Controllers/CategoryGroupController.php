@@ -38,12 +38,10 @@ class CategoryGroupController extends Controller
     {
         $field = [
             'name' => 'required|string|max:100',
-            // 'category_group_id' => 'required|in:Asigne una categoría',
         ];
 
         $message=[
             'name.required' => 'El nombre es requerido.',
-            // 'category_group_id.required' => 'Se requiere una categoría.',
         ];
 
         $this->validate($request, $field, $message);

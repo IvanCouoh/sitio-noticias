@@ -3,10 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Article;
-use App\Models\Category;
-use App\Models\CategoryGroup;
-use App\Models\Comment;
-use Illuminate\Http\Request;
 
 class PageController extends Controller
 {

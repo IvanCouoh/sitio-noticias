@@ -1,9 +1,3 @@
-/* paleta de colores:
-azul: #3261eb
-naranja: #ff7000
-fondo: #bcccff
-blanco:#fefffe */
-
 :root {
     --color_primary: #3261eb;
     --color_secondary: #ff7000;
@@ -308,4 +302,8 @@ h1, h2, h3, p {
 
 .text-area {
     grid-column: 4/11;
+}
+
+.article__id {
+    display: none;
 }
