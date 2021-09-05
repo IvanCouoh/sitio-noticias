@@ -12,6 +12,10 @@ class Comment extends Model
 
     protected $fillable = ['author', 'email', 'message', 'article_id'];
 
+    protected $casts = [
+        'is_banned' => 'boolean',
+    ];
+
     public function article()
     {
         return $this->belongsTo(Article::class);

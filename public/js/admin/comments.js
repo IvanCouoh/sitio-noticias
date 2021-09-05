@@ -21,8 +21,8 @@ const updateCommentList = () => {
                             ${item.message}
                         </span>
                         <div class="actions">
-                            <button onclick="banComment('${item.id}');" style="background: ${item.is_banned === 1 ? '#c91b1b' : '#259b39'}; color: white; height: max-content;" class="button">
-                                ${item.is_banned === 1 ? 'Unban' : 'Ban'}
+                            <button onclick="banComment('${item.id}');" style="background: ${item.is_banned === true ? '#c91b1b' : '#259b39'}; color: white; height: max-content;" class="button">
+                                ${item.is_banned === false ? 'Unban' : 'Ban'}
                             </button>
                         </div>
                     </li>
