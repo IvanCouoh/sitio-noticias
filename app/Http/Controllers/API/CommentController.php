@@ -87,16 +87,19 @@ class CommentController extends Controller
 
     public function banComment($comment_id){
         $comment = Comment::findOrFail($comment_id);
+        $action = '';
 
         if($comment->is_banned == true){
             $comment->is_banned = false;
+            $action = 'unbanned';
         }else{
             $comment->is_banned = true;
+            $action = 'banned';
         }
 
         $comment->save();
         return [
-            'message' => 'comment banned'
+            'message' => "comment $action"
         ];
     }
 
