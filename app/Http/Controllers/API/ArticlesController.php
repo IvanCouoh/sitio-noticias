@@ -71,7 +71,10 @@ class ArticlesController extends Controller
     }
 
     public function getArticlesByCategoryId($id){
-        $articles = Category::with(['articles', 'articles.category'])->where('id', $id)->first()->articles;
+        $articles = Category::with(['articles'=>function($query){
+                                                $query->orderByRaw('created_at DESC');
+                                            },
+                                    'articles.category'])->where('id', $id)->first()->articles;
 
         return $articles;
     }
